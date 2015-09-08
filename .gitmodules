@@ -1,3 +1,6 @@
 [submodule "src/HeatMap"]
 	path = src/HeatMap
 	url = https://github.com/brendangregg/HeatMap
+[submodule "src/perf-tools"]
+	path = src/perf-tools
+	url = https://github.com/brendangregg/perf-tools
