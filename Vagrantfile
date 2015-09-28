@@ -68,4 +68,13 @@ Vagrant.configure(2) do |config|
   #   sudo apt-get update
   #   sudo apt-get install -y apache2
   # SHELL
+  config.vm.provision "shell", inline: <<-SHELL
+    apt-get update
+    apt-get -y install sysstat linux-tools-generic blktrace moreutils libc6-dbg
+    curl -s https://s3.amazonaws.com/download.draios.com/stable/install-sysdig | bash
+    curl -L -o /usr/bin/pcstat https://github.com/tobert/pcstat/raw/2014-05-02-01/pcstat.x86_64
+    chmod +x /usr/bin/pcstat
+    dd if=/dev/zero of=/tmp/data bs=1M count=2k
+    su - vagrant -c "cd /vagrant/src && make"
+  SHELL
 end
